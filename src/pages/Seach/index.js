@@ -17,10 +17,12 @@ export default function Search() {
   const [orderByList, setOrderByList] = useState('name');
   const [listCount, setListCount] = useState();
 
-  const [newHero, setNewHero] = useState();
+  const hero = sessionStorage.getItem('search');
+  
+  const [newHero, setNewHero] = useState(hero);
 
   useEffect(() => {
-    setNewHero(sessionStorage.getItem('search'));
+    
     async function loadHeroes() {
       setLoadingList(true);
       const response = await api.get('', {

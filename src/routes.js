@@ -8,7 +8,7 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Main} />
-      <Route path="/search" component={Search} />
+      <Route path="/search" component={Search}  key={document.location.href} />
     </Switch>
   );
 }

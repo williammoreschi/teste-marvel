@@ -18,11 +18,14 @@ import {
   SortButton,
 } from './styles';
 
+import { createBrowserHistory } from "history";
+export const history = createBrowserHistory({forceRefresh:true})
+
 export default function Header() {
+  
   const [inputSearch, setInputSearch] = useState('');
   const [resetSearch, setResetSearch] = useState(false);
   const [orderByList, setOrderByList] = useState('name');
-  const history = useHistory();
 
   useEffect(() => {
     const searchStorage = sessionStorage.getItem('search');

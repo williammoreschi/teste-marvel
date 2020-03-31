@@ -7,8 +7,8 @@ import Search from './pages/Seach';
 export default function Routes() {
   return (
     <Switch>
-      <Route path="/" exact component={Main} />
-      <Route path="/search" component={Search}  key={document.location.href} />
+      <Route path="/" exact component={Main} key={document.location.href}  />
+      <Route path="/search" render={(props) => <Search {...props} /> } key={document.location.href} />
     </Switch>
   );
 }

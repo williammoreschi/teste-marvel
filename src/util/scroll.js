@@ -14,24 +14,27 @@ function windowScroll() {
     'scroll',
     e => {
       const headerGlobal = document.querySelector('#HeaderGlobal');
+      if (headerGlobal != undefined) {
+        if (e.scrollY === lastScrollTop) return;
 
-      if (e.scrollY === lastScrollTop) return;
-
-      if (w.scrollY > lastScrollTop) {
-        if (
-          w.scrollY > headerGlobal.offsetHeight &&
-          !headerGlobal.classList.contains('fixed')
-        ) {
-          headerGlobal.classList.add('fixed');
-          const mB = `${getAbsoluteHeight(headerGlobal)}px`;
-          document.querySelector('body').style.marginTop = mB;
+        if (w.scrollY > lastScrollTop) {
+          if (
+            w.scrollY > headerGlobal.offsetHeight &&
+            !headerGlobal.classList.contains('fixed')
+          ) {
+            headerGlobal.classList.add('fixed');
+            const mB = `${getAbsoluteHeight(headerGlobal)}px`;
+            document.querySelector('body').style.marginTop = mB;
+          }
+        } else {
+          headerGlobal.classList.remove('fixed');
+          document.querySelector('body').style.removeProperty('margin-top');
         }
+        // console.log(w.scrollY < lastScrollTop ? 'Cima' : 'Baixo');
+        lastScrollTop = w.scrollY;
       } else {
-        headerGlobal.classList.remove('fixed');
         document.querySelector('body').style.removeProperty('margin-top');
       }
-      // console.log(w.scrollY < lastScrollTop ? 'Cima' : 'Baixo');
-      lastScrollTop = w.scrollY;
     },
     true
   );

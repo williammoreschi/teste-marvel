@@ -130,3 +130,11 @@ export const List = styled.ul`
     }
   }
 `;
+
+export const Noresult = styled.p`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6em;
+`;

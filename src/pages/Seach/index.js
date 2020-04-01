@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import Loadingif from '../../components/Loadingif';
 import PageActions from '../../components/PageActions';
 import HeroesList from '../../components/HeroesList';
-import { withRouter } from 'react-router-dom';
+
 import api from '../../services/api';
 
-const Search =  function() {
+const Search = function() {
   const [loadingPage, setLoadingPage] = useState(false);
   const [loadingList, setLoadingList] = useState(false);
   const [page, setPage] = useState(1);
@@ -18,7 +19,7 @@ const Search =  function() {
   const [listCount, setListCount] = useState();
 
   const hero = sessionStorage.getItem('search');
-  
+
   const [newHero, setNewHero] = useState(hero);
 
   useEffect(() => {
@@ -60,6 +61,6 @@ const Search =  function() {
       />
     </>
   );
-}
+};
 
 export default withRouter(Search);

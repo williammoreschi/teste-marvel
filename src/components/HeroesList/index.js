@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaAngleRight } from 'react-icons/fa';
 import Container from '../Container';
 
-import { List } from './styles';
+import { List, Noresult } from './styles';
 
 export default function HeroesList({ heroes, loadingList }) {
   const [imageHero, setImageHero] = useState();
@@ -19,31 +19,35 @@ export default function HeroesList({ heroes, loadingList }) {
   return (
     <>
       <Container>
-        <List className={loadingList && 'loading'}>
-          {heroes.map(hero => (
-            <li key={String(hero.id)}>
-              <Link to={`/hero/${encodeURIComponent(hero.name)}`}>
-                <figure>
-                  <img
-                    src={`${hero.thumbnail.path}/${imageHero}.${hero.thumbnail.extension}`}
-                    alt={hero.name}
-                  />
-                </figure>
-                <section>
-                  <h1>{hero.name}</h1>
-                  <p>
-                    {hero.description
-                      ? `${hero.description.substring(0, 150)}...`
-                      : 'Personagem sem descricão.'}
-                  </p>
-                  <span>
-                    Veja Mais <FaAngleRight size="14" />
-                  </span>
-                </section>
-              </Link>
-            </li>
-          ))}
-        </List>
+        {heroes.length ? (
+          <List className={loadingList && 'loading'}>
+            {heroes.map(hero => (
+              <li key={String(hero.id)}>
+                <Link to={`/hero/${hero.id}`}>
+                  <figure>
+                    <img
+                      src={`${hero.thumbnail.path}/${imageHero}.${hero.thumbnail.extension}`}
+                      alt={hero.name}
+                    />
+                  </figure>
+                  <section>
+                    <h1>{hero.name}</h1>
+                    <p>
+                      {hero.description
+                        ? `${hero.description.substring(0, 150)}...`
+                        : 'Personagem sem descricão.'}
+                    </p>
+                    <span>
+                      Veja Mais <FaAngleRight size="14" />
+                    </span>
+                  </section>
+                </Link>
+              </li>
+            ))}
+          </List>
+        ) : (
+          <Noresult>Nenhum Resultado</Noresult>
+        )}
       </Container>
     </>
   );
